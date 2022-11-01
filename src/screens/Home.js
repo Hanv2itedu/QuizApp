@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { connect } from 'react-redux';
-import { MutipleAnswers, SingleAnswers } from '../component/Answers';
+import {
+  FancyAnswers,
+  MutipleAnswers,
+  SingleAnswers,
+} from '../component/Answers';
 import CurvedPath from '../component/CurvedPath';
 import Header from '../component/Header';
 import { QUIZ_TYPES } from '../constant';
@@ -105,6 +109,7 @@ class Home extends Component {
     // TODO:Add more component if we have more types
     const answersComponent = {
       [QUIZ_TYPES.SINGLE_CHOICE]: <SingleAnswers {...componentProps} />,
+      [QUIZ_TYPES.FANCY]: <FancyAnswers {...componentProps} />,
       [QUIZ_TYPES.MUTIPLE_CHOICE]: <MutipleAnswers {...componentProps} />,
       [QUIZ_TYPES.YES_NO_CHOICE]: (
         <SingleAnswers {...componentProps} answers={['Yes', 'No']} />

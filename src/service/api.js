@@ -13,6 +13,17 @@ const fakeData = [
     type: QUIZ_TYPES.SINGLE_CHOICE,
   },
   {
+    id: '10',
+    title: 'What is React Native Fancy?',
+    answers: [
+      'JavaScript library',
+      'JavaScript framework',
+      'Programming language',
+      'Neither of the above',
+    ],
+    type: QUIZ_TYPES.FANCY,
+  },
+  {
     id: '2',
     title: 'React Native has a set components for:',
     des: 'Select mutiple answers (more than 1)',

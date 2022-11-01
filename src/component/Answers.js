@@ -1,10 +1,11 @@
 import { Component } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import Button from '../core/Button';
+import FancyAnswerItem from './FancyAnswerItem';
 import MutipleAnswersComponent, { onValidateMutiple } from './MutipleAnswers';
 import SingleAnswersComponent, { onValidateSingle } from './SingleAnswers';
 
-const withAnswers = (AnswersComponent, onValidate) => {
+const withAnswers = (AnswersComponent, onValidate, ItemAnswerComponent) => {
   return class extends Component {
     state = {
       answerTaken: this.props.answerTaken,
@@ -35,6 +36,7 @@ const withAnswers = (AnswersComponent, onValidate) => {
               data={{ answers }}
               onValueChange={this.onValueChange}
               answerTaken={answerTaken}
+              ItemAnswerComponent={ItemAnswerComponent}
             />
           </ScrollView>
           <View style={styles.footer}>
@@ -52,11 +54,16 @@ const withAnswers = (AnswersComponent, onValidate) => {
 
 const SingleAnswers = withAnswers(SingleAnswersComponent, onValidateSingle);
 const MutipleAnswers = withAnswers(MutipleAnswersComponent, onValidateMutiple);
+const FancyAnswers = withAnswers(
+  SingleAnswersComponent,
+  onValidateMutiple,
+  FancyAnswerItem,
+);
 // If we want a mutiple answers with each value larger than 1
 // we can create const MutipleAnswers = withAnswers(MutipleAnswersComponent, onCustomeValidateMutiple);
 // the onCustomeValidateMutiple is a function that validate all values > 1
 
-export { SingleAnswers, MutipleAnswers };
+export { SingleAnswers, MutipleAnswers, FancyAnswers };
 
 const styles = StyleSheet.create({
   container: {

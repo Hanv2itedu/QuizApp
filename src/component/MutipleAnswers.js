@@ -38,9 +38,10 @@ class MutipleAnswersComponent extends Component {
   };
 
   renderAnswer = (answer, index) => {
+    const { ItemAnswerComponent } = this.props;
     const { answerTaken } = this.state;
     const isAnswerTaken = answerTaken.includes(answer);
-    return (
+    return !ItemAnswerComponent ? (
       <TouchableOpacity
         style={[styles.answerItem, isAnswerTaken && styles.answerItemTaken]}
         key={String(answer + index)}
@@ -54,6 +55,12 @@ class MutipleAnswersComponent extends Component {
           onChange={this.onTakeAnswer(answer)}
         />
       </TouchableOpacity>
+    ) : (
+      <ItemAnswerComponent
+        answer={answer}
+        isCheck={isAnswerTaken}
+        onChange={this.onTakeAnswer(answer)}
+      />
     );
   };
 

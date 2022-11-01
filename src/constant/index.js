@@ -4,4 +4,5 @@ export const QUIZ_TYPES = {
   DATE_TIME: 'DATE_TIME',
   INPUT: 'INPUT',
   YES_NO_CHOICE: 'YES_NO_CHOICE',
+  FANCY: 'FANCY',
 };

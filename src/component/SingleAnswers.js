@@ -1,7 +1,7 @@
 import { Component } from 'react';
-import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 import Checkbox from '../core/Checkbox';
-import colors from '../theme/colors';
+import styles from './commonStyles';
 
 export const onValidateSingle =
   () =>
@@ -19,9 +19,9 @@ class SingleAnswersComponent extends Component {
   };
 
   renderAnswer = (answer, index) => {
-    const { answerTaken } = this.props;
+    const { answerTaken, ItemAnswerComponent } = this.props;
     const isAnswerTaken = answerTaken.includes(answer);
-    return (
+    return !ItemAnswerComponent ? (
       <TouchableOpacity
         style={[styles.answerItem, isAnswerTaken && styles.answerItemTaken]}
         key={String(answer + index)}
@@ -36,6 +36,13 @@ class SingleAnswersComponent extends Component {
           isRadio
         />
       </TouchableOpacity>
+    ) : (
+      <ItemAnswerComponent
+        key={String(answer + index)}
+        answer={answer}
+        isAnswerTaken={isAnswerTaken}
+        onChange={this.onTakeAnswer(answer)}
+      />
     );
   };
 
@@ -44,28 +51,5 @@ class SingleAnswersComponent extends Component {
     return <>{answers.map(this.renderAnswer)}</>;
   }
 }
-
-const styles = StyleSheet.create({
-  answerItem: {
-    flexDirection: 'row',
-    backgroundColor: 'white',
-    paddingHorizontal: 16,
-    paddingVertical: 20,
-    borderRadius: 8,
-    marginBottom: 15,
-    borderWidth: 2,
-    borderColor: 'white',
-  },
-  answerItemTaken: {
-    backgroundColor: colors.green,
-  },
-  answerText: {
-    flex: 1,
-    color: colors.textBlack,
-  },
-  answerTextTaken: {
-    color: 'white',
-  },
-});
 
 export default SingleAnswersComponent;
