@@ -15,10 +15,13 @@ const initialState = {
   quizzes: [],
 };
 
-const fetchQuizzesAsync = createAsyncThunk('quiz/fetchQuizzes', async () => {
-  const { quizzes = [] } = await fetchQuizzes();
-  return { quizzes };
-});
+export const fetchQuizzesAsync = createAsyncThunk(
+  'quiz/fetchQuizzes',
+  async () => {
+    const { quizzes = [] } = await fetchQuizzes();
+    return { quizzes };
+  },
+);
 
 export const quizzesSlice = createSlice({
   name: 'quiz',

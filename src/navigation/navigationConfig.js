@@ -1,5 +1,5 @@
 import { createStackNavigator } from '@react-navigation/stack';
-import Home from '../screens/Home';
+import HomeScreen from '../screens/HomeScreen';
 import Summary from '../screens/Summary';
 
 const Stack = createStackNavigator();
@@ -11,7 +11,7 @@ const screenOptions = {
 const RootStack = () => {
   return (
     <Stack.Navigator initialRouteName="Main" screenOptions={screenOptions}>
-      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="Home" component={HomeScreen} />
       <Stack.Screen name="Summary" component={Summary} />
     </Stack.Navigator>
   );
